@@ -1,0 +1,202 @@
+<title>Studio Playbook</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Abril+Fatface&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one reading column on grid paper; ransom-note tiles only in the masthead; tables for the stack. */
+:root{
+  --paper:#f4f1ea; --grid:rgba(40,70,130,.09); --ink:#16181d; --muted:#5b6070; --card:#fffdf8; --line:#d9d3c5;
+  --blue:#1f4fbf; --yellow:#f2c230; --red:#c8232a; --green:#1d7a46; --pink:#f4b6c2;
+  --display:"Archivo Black","Arial Black",system-ui,sans-serif; --serif:"Abril Fatface",Georgia,serif;
+  --body:"IBM Plex Sans",system-ui,-apple-system,sans-serif; --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#15171c; --grid:rgba(140,170,230,.07); --ink:#ecebe6; --muted:#a3a7b3; --card:#1d2027; --line:#323743;
+  --blue:#7d9cf0; --yellow:#f2c230; --red:#f0646a; --green:#55c48a; --pink:#d98ea0; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#15171c; --grid:rgba(140,170,230,.07); --ink:#ecebe6; --muted:#a3a7b3; --card:#1d2027; --line:#323743;
+  --blue:#7d9cf0; --yellow:#f2c230; --red:#f0646a; --green:#55c48a; --pink:#d98ea0; color-scheme:dark}
+body{background:var(--paper);color:var(--ink);font:16px/1.6 var(--body);
+  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:28px 28px;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+main{max-width:860px;margin:0 auto;padding-block:40px 80px;display:flex;flex-direction:column;gap:56px}
+h1,h2,h3{text-wrap:balance;margin:0}
+h2{font:400 clamp(26px,4vw,34px)/1.15 var(--display);letter-spacing:-.01em;display:flex;gap:12px;align-items:baseline}
+h2 .step{font:500 13px var(--mono);color:var(--red);letter-spacing:.08em;text-transform:uppercase}
+h3{font:600 18px/1.3 var(--body)}
+p{margin:0;max-width:68ch}
+section{display:flex;flex-direction:column;gap:18px}
+a{color:var(--blue)}
+code,kbd{font:500 .88em var(--mono);background:var(--card);border:1px solid var(--line);padding:1px 6px;border-radius:4px}
+/* masthead */
+.mast{display:flex;flex-direction:column;gap:20px;padding-top:12px}
+.ransom{display:flex;flex-wrap:wrap;gap:4px;align-items:center}
+.ransom span{font:400 clamp(34px,8vw,64px)/1 var(--serif);padding:4px 8px;box-shadow:2px 3px 0 rgba(0,0,0,.18)}
+.ransom span:nth-child(5n+1){background:var(--yellow);color:#141414;transform:rotate(-4deg)}
+.ransom span:nth-child(5n+2){background:#141414;color:#fbfaf6;font-family:var(--display);transform:rotate(3deg)}
+.ransom span:nth-child(5n+3){background:#fbfaf6;color:#c8232a;transform:rotate(-2deg)}
+.ransom span:nth-child(5n+4){background:#1f4fbf;color:#fbfaf6;font-family:var(--display);transform:rotate(5deg)}
+.ransom span:nth-child(5n){background:#c8232a;color:#fbfaf6;transform:rotate(-3deg)}
+.ransom .gap{background:none!important;box-shadow:none;width:14px;padding:0}
+.lede{font-size:19px;max-width:62ch}
+.lede strong{background:linear-gradient(transparent 60%,color-mix(in srgb,var(--yellow) 70%,transparent) 60%)}
+/* reels */
+.reels{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+.reel{background:var(--card);border:1px solid var(--line);padding:14px 16px;display:flex;flex-direction:column;gap:6px;min-width:0}
+.reel .who{font:500 12px var(--mono);color:var(--muted)}
+.reel .tool{font-weight:600}
+.reel p{font-size:14.5px;color:var(--muted)}
+/* tables */
+.tbl{overflow-x:auto;border:1px solid var(--line);background:var(--card)}
+table{border-collapse:collapse;width:100%;min-width:640px;font-size:14.5px}
+th,td{text-align:left;padding:11px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font:500 12px var(--mono);text-transform:uppercase;letter-spacing:.08em;color:var(--muted);background:color-mix(in srgb,var(--paper) 60%,var(--card))}
+tr:last-child td{border-bottom:0}
+td:first-child{font-weight:600;width:24%}
+.pill{display:inline-block;font:500 11.5px var(--mono);padding:2px 8px;border-radius:99px;white-space:nowrap;border:1px solid}
+.me{color:var(--green);border-color:var(--green)}
+.app{color:var(--blue);border-color:var(--blue)}
+.you{color:var(--red);border-color:var(--red)}
+.seen{font:500 11px var(--mono);color:var(--muted)}
+/* who-does-what */
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+.col{background:var(--card);border:1px solid var(--line);border-top:5px solid var(--c);padding:16px 18px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.col h3{color:var(--c)}
+.col ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:6px;font-size:14.5px}
+/* steps */
+ol.steps{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:14px}
+ol.steps>li{background:var(--card);border:1px solid var(--line);padding:18px 20px;display:grid;grid-template-columns:44px 1fr;gap:4px 14px}
+ol.steps>li .n{grid-row:span 2;font:400 28px/1 var(--serif);color:var(--red)}
+ol.steps>li ul{margin:6px 0 0;padding-left:18px;display:flex;flex-direction:column;gap:4px;font-size:15px}
+ol.steps>li p{font-size:15px}
+.flow{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px}
+.flow article{background:var(--card);border:1px solid var(--line);padding:16px 18px;display:flex;flex-direction:column;gap:8px;min-width:0}
+.flow article ol{margin:0;padding-left:20px;font-size:14.5px;display:flex;flex-direction:column;gap:4px}
+.cmds{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:10px}
+.cmd{display:flex;flex-direction:column;gap:2px;padding:12px 14px;border:1px dashed var(--line);background:var(--card)}
+.cmd b{font:500 15px var(--mono);color:var(--blue)}
+.cmd span{font-size:14px;color:var(--muted)}
+.note{border-left:4px solid var(--yellow);padding:12px 16px;background:var(--card);font-size:15px}
+footer{font:500 12px var(--mono);color:var(--muted)}
+@media (prefers-reduced-motion:no-preference){.ransom span{transition:transform .2s}.ransom span:hover{transform:rotate(0) scale(1.08)}}
+</style>
+
+<main>
+  <header class="mast">
+    <div class="ransom" aria-label="Your Studio">
+      <span>Y</span><span>O</span><span>U</span><span>R</span><span class="gap"></span><span>S</span><span>T</span><span>U</span><span>D</span><span>I</span><span>O</span>
+    </div>
+    <p class="lede">An AI video studio built around you: <strong>your face, your cloned voice, your script</strong>, then edited with effects that look hand-made, impossible camera moves, and captions people stop scrolling for. This page covers what to sign up for, what Claude does automatically, and what stays in your hands.</p>
+  </header>
+
+  <section>
+    <h2><span class="step">What I studied</span>Your 5 reference reels</h2>
+    <div class="reels">
+      <div class="reel"><span class="who">dash.werk</span><span class="tool">Higgsfield → Seedance 2.5</span><p>One take, many camera angles. Claude writes a timestamped shot list; Seedance re-shoots it. Key line: "keep the same location, dialogue and action."</p></div>
+      <div class="reel"><span class="who">utk_graphics</span><span class="tool">Aragon AI → Kling Motion Control</span><p>Your motion plus a reference photo gives a new outfit, hair, makeup and background while the performance stays the same.</p></div>
+      <div class="reel"><span class="who">adam.godigital</span><span class="tool">Claude Code effects + Fish Audio</span><p>Slash commands like /paper_cut and /ui_world render motion graphics from code. Voice cloned in Fish Audio.</p></div>
+      <div class="reel"><span class="who">iamyeychii</span><span class="tool">Runway Aleph 2.0</span><p>Edit filmed footage by typing: swap the wall art, add a plant, change outfit colour. Preview, then apply.</p></div>
+      <div class="reel"><span class="who">leadwithzoe</span><span class="tool">VEED "Clone yourself"</span><p>Photo plus voice sample gives a talking avatar. Paste a script, pick captions and music, export vertical.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="step">The stack</span>Apps for each job</h2>
+    <p>Pick <b>one</b> tool per row to start; add the backups only when you hit a limit. Claude writes the exact prompts and settings for every app row.</p>
+    <div class="tbl"><table>
+      <thead><tr><th>Job</th><th>Use</th><th>Backup</th><th>Who runs it</th></tr></thead>
+      <tbody>
+        <tr><td>Talking video from a photo</td><td><b>HeyGen</b> (Avatar IV: one photo plus script)</td><td>VEED Clone yourself <span class="seen">· in reel</span>, Hedra</td><td><span class="pill app">App</span> <span class="pill you">You</span></td></tr>
+        <tr><td>Voice clone</td><td><b>ElevenLabs</b> (Professional Voice Clone)</td><td>Fish Audio <span class="seen">· in reel</span></td><td><span class="pill app">App</span> <span class="pill you">You record</span></td></tr>
+        <tr><td>Audio only → video</td><td><b>HeyGen</b> (upload audio instead of script)</td><td>Hedra</td><td><span class="pill app">App</span></td></tr>
+        <tr><td>Multi-angle and drone views</td><td><b>Higgsfield</b> → Seedance 2.5 <span class="seen">· in reel</span></td><td>Kling (via Higgsfield)</td><td><span class="pill me">Claude prompts</span> <span class="pill app">App</span></td></tr>
+        <tr><td>Change outfit, background, props</td><td><b>Runway Aleph</b> <span class="seen">· in reel</span></td><td>Kling Motion Control via Aragon AI <span class="seen">· in reel</span></td><td><span class="pill me">Claude prompts</span> <span class="pill app">App</span></td></tr>
+        <tr><td>Reference stills, thumbnails</td><td><b>Nano Banana</b> (Gemini) for "you in a new scene"</td><td>Canva (already connected to Claude)</td><td><span class="pill me">Claude</span> <span class="pill app">App</span></td></tr>
+        <tr><td>Cutouts, paper-cut collage, floating graphics, captions, waveforms</td><td><b>This studio</b> (Claude + Remotion engine)</td><td>CapCut for quick manual fixes</td><td><span class="pill me">Claude, automatic</span></td></tr>
+        <tr><td>Cuts, zooms, speed ramps, loudness, export</td><td><b>This studio</b> (ffmpeg)</td><td>DaVinci Resolve (free)</td><td><span class="pill me">Claude, automatic</span></td></tr>
+        <tr><td>Scheduling and posting</td><td><b>Postiz</b> (skill already installed here)</td><td>Meta Business Suite</td><td><span class="pill me">Claude</span> once connected</td></tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <section>
+    <h2><span class="step">Roles</span>Who does what</h2>
+    <div class="cols">
+      <div class="col" style="--c:var(--green)"><h3>Claude, automatically</h3><ul>
+        <li>Pitch 3 concepts per video and pick a hook</li>
+        <li>Write scripts with on-screen text and effect cues</li>
+        <li>Cut out the person with a torn sticker border</li>
+        <li>Word-by-word captions (ransom, serif pop, more to come)</li>
+        <li>Paper-cut collage, voice-reactive scribbles, hand-drawn circles</li>
+        <li>Timestamped multi-angle prompts for Seedance or Kling</li>
+        <li>Conform AI clips back into one edit: sync, colour, transitions, loudness</li>
+        <li>Build new effects on request (glass widgets, UI world, carousel spin…)</li>
+      </ul></div>
+      <div class="col" style="--c:var(--blue)"><h3>Another app</h3><ul>
+        <li>Cloning your face into a talking avatar</li>
+        <li>Cloning your voice and generating speech</li>
+        <li>Generating new camera angles or drone shots</li>
+        <li>Restyling outfit, background or location</li>
+        <li>Later: give me API keys (HeyGen, ElevenLabs, fal.ai) and I can run these for you too</li>
+      </ul></div>
+      <div class="col" style="--c:var(--red)"><h3>You</h3><ul>
+        <li>Record the clone material: photos, 2-min video, voice sample</li>
+        <li>Verify your identity in each clone app (they require consent)</li>
+        <li>Press Generate in the apps and drop results into the studio</li>
+        <li>Approve the concept and give final taste notes</li>
+        <li>Post, and tick Instagram's "AI info" label on avatar videos</li>
+      </ul></div>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="step">Setup</span>Fundamentals, in order</h2>
+    <ol class="steps">
+      <li><span class="n">1</span><h3>Make the studio permanent</h3><p>Today's studio lives in a cloud workspace that is wiped when idle. Create a <b>private GitHub repo</b> (e.g. <code>studio</code>), connect GitHub to Claude, and send me the name. I'll push everything and create a saved environment that reinstalls the tools on every session (<code>setup.sh</code> is ready).</p></li>
+      <li><span class="n">2</span><h3>Shoot your clone kit (one afternoon)</h3><ul>
+        <li><b>Headshots:</b> 5 to 10 photos, front-facing, eye level, soft window light, mouth closed and slightly open, no sunglasses or hands near the face. Highest resolution your phone allows.</li>
+        <li><b>Avatar footage:</b> 2 to 3 minutes talking to camera, still head, natural gestures, 4K 30fps, plain background.</li>
+        <li><b>Voice:</b> 3 to 5 minutes clean audio in a quiet, soft room (closet or duvet), lav or USB mic, mixed energy (calm, excited, questioning). ElevenLabs Professional clones improve up to about 30 min.</li>
+        <li>Drop them in the session; I'll file them under <code>assets/faces</code> and <code>assets/voice</code>.</li>
+      </ul></li>
+      <li><span class="n">3</span><h3>Open the four accounts</h3><ul>
+        <li><b>HeyGen</b>: create a Photo Avatar or Video Avatar and connect your ElevenLabs voice.</li>
+        <li><b>ElevenLabs</b>: Voice Lab, then Professional Voice Clone, and verify.</li>
+        <li><b>Higgsfield</b>: covers Seedance 2.5 and Kling in one place, for angles and motion control.</li>
+        <li><b>Runway</b>: Aleph, for edits by typing. Start every app on its cheapest paid tier and upgrade only when credits run out.</li>
+      </ul></li>
+      <li><span class="n">4</span><h3>Lock your look</h3><p>Pick 2 fonts, 4 colours, a caption style and an intro move. Send references you love and I'll save them in <code>CLAUDE.md</code> so every edit stays recognisably yours.</p></li>
+      <li><span class="n">5</span><h3>Film for AI, not just for camera</h3><ul>
+        <li>9:16, 4K, 30fps, phone at eye level, key light 45° to one side.</li>
+        <li>Plain background a few feet behind you: cleaner cutouts and easier scene swaps.</li>
+        <li>1 second of stillness at the start and end of each take. Generators lock onto it.</li>
+        <li>Shoot one wide take. Seedance can generate the close-ups and drone shots from it.</li>
+      </ul></li>
+      <li><span class="n">6</span><h3>Run your first video</h3><p>Send footage or a headshot plus a topic and type <code>/direct</code>. You get 3 concepts, the local edit, and a prompts file for each app step.</p></li>
+    </ol>
+  </section>
+
+  <section>
+    <h2><span class="step">Routine</span>Your four daily recipes</h2>
+    <div class="flow">
+      <article><h3>A · Photo + script → talking video</h3><ol><li><code>/script</code> topic → Claude writes it</li><li>Paste into HeyGen with your avatar and ElevenLabs voice → export 9:16</li><li>Drop the MP4 here → <code>/paper_cut</code> or serif captions</li></ol></article>
+      <article><h3>B · Audio → video</h3><ol><li>Send the voice note; Claude transcribes and tightens it</li><li>HeyGen: avatar + "upload audio"</li><li>Claude adds captions, b-roll prompts and effects</li></ol></article>
+      <article><h3>C · One angle → many (with drone)</h3><ol><li>Send the clip → <code>/angles</code></li><li>Paste the prompt in Higgsfield → Seedance 2.5, one segment at a time</li><li>Return the clips; Claude conforms, syncs and grades them</li></ol></article>
+      <article><h3>D · Restyle your scene</h3><ol><li><code>/character_swap</code> → prompts for Kling Motion Control and Runway Aleph</li><li>Generate in the app</li><li>Claude finishes it with effects and captions</li></ol></article>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="step">Commands</span>Slash commands in your studio</h2>
+    <div class="cmds">
+      <div class="cmd"><b>/direct</b><span>Full creative-director pass on whatever is in the inbox</span></div>
+      <div class="cmd"><b>/paper_cut</b><span>Collage edit with cutout sticker and ransom captions. Built and tested.</span></div>
+      <div class="cmd"><b>/angles</b><span>Multi-camera and drone prompts for Seedance 2.5</span></div>
+      <div class="cmd"><b>/script</b><span>Hooks plus script with on-screen text and effect cues</span></div>
+      <div class="cmd"><b>/character_swap</b><span>Outfit, background and character prompts</span></div>
+      <div class="cmd"><b>Next to build</b><span>glass_widgets · ui_world · carousel_spin · documentary · pullback_reveal</span></div>
+    </div>
+    <p class="note">Rendering runs on a cloud CPU: a 5-second paper-cut edit took about 2 minutes, so plan on 10 to 20 minutes for a 60-second reel. Free to run; only the outside AI apps cost credits.</p>
+  </section>
+
+  <footer>studio · 1080×1920 · 30fps · −14 LUFS</footer>
+</main>

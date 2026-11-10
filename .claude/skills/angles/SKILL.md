@@ -14,4 +14,7 @@ End at 00:22.5.
 Keep the location, dialogue, lip-sync and actions identical. Do not add or remove people or props.
 ```
 4. Also write per-segment mini-prompts (one angle each, ≤5s) because the model rarely nails a whole clip at once. The creator generates segment by segment.
-5. Tell the creator: Higgsfield → Video → Edit → model "Seedance 2.5" → upload the original → paste → 1080p 9:16. When the clips come back, put them in `inbox/` and Claude will conform them (match audio to the original, colour-match, add whoosh transitions).
+5. Generate via fal: cut the take into ≤30s segments with ffmpeg, then for each segment run
+   `python3 tools/fal_gen.py angles --video <seg> --prompt-file <seg_prompt.md> --draft` (shows the cost estimate).
+   Show the estimate, get a go, then add `--yes`. Review the 480p draft, then re-run at `--res 720p` or `1080p`.
+6. Conform: replace the generated audio with the original take's audio, colour-match, and add whoosh transitions.

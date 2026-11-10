@@ -8,3 +8,5 @@ exports/*
 *.wav
 !engine/public/demo_captions.json
 !engine/public/demo_levels.json
+.env
+__pycache__/
