@@ -1,0 +1,8 @@
+node_modules/
+engine/public/*/
+engine/public/demo_*
+inbox/*
+!inbox/.keep
+exports/*
+!exports/.keep
+*.wav
