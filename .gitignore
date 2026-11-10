@@ -6,3 +6,5 @@ inbox/*
 exports/*
 !exports/.keep
 *.wav
+!engine/public/demo_captions.json
+!engine/public/demo_levels.json
